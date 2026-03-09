@@ -1,54 +1,16 @@
+# React + Vite
 
-# Movie Ticket App
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Opgavebeskrivelse
+Currently, two official plugins are available:
 
-I denne opgave skal I udvikle en **web-applikation til booking af biografbilletter**. Applikationen skal følge det medfølgende design, som er udarbejdet i Figma, og som dækker hele brugerrejsen fra filmudforskning til billetkøb og visning af e-billet.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-I må arbejde **alene eller i en 2-personers gruppe**.
+## React Compiler
 
----
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Formål
+## Expanding the ESLint configuration
 
-Formålet med opgaven er at:
-
-- Øve jer i at omsætte et UI-design til en funktionel webapplikation.
-- Arbejde med routing, state management og dynamisk rendering.
-- Integrere formularer og brugerinteraktioner.
-- Øve jer i versionsstyring og samarbejde via Git og GitHub.
-
----
-
-## Krav
-
-- Applikationen skal være bygget med **HTML, CSS og JavaScript** (evt. med et framework som React eller NextJS).
-- Designet fra Figma skal følges så tæt som muligt.
-- Der skal være **routing** mellem de forskellige sider.
-- Brugeren skal kunne **vælge sæder**, **gennemføre en betaling** (simuleret), og **modtage en billet**.
-- Inputfelter skal valideres
-- Der skal være en **live version** af jeres løsning, hostet på fx Render.com, GitHub Pages, Netlify eller lignende.
-
----
-
-# Ekstra Opgaver:
-
-- **Opret bruger**: En formular hvor brugeren kan registrere sig med navn, e-mail og adgangskode.
-- **Log ind**: En login-side hvor brugeren kan logge ind med e-mail og adgangskode.
-- **Session-håndtering**: Når brugeren er logget ind, skal appen kunne huske brugeren.
-- **Log ud**: Mulighed for at logge ud igen.
-- **Gemte planer og billetter**: Disse skal kun være tilgængelige for den bruger, der er logget ind.
-
----
-
-## Aflevering
-
-1. Lav en **pull request** til `main` branch'en i jeres repository.
-2. Inkludér et link til den **live version** af jeres web-app i pull request-beskrivelsen og i denne README-fil under afsnittet "Live Demo".
-
----
-
-## Live Demo
-
-> Indsæt link til jeres hostede version her, fx:
-> [https://biografbooking.netlify.app](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
