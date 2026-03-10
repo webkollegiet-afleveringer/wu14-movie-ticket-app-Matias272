@@ -1,12 +1,20 @@
+@use "../styles/variables.scss" as *;
 .page-navbar {
-    display: flex;
-    justify-content: center;
-    padding: 15px 25px;
+    max-width: 1200px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    padding: 20px;
     & ul {
-        background-color: red;
+        list-style: none;
+        width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
         gap: 10px;
+        & li:hover path {
+            cursor: pointer;
+            fill: #54A8E5;
+        }
     }
 }

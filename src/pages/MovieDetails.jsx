@@ -23,6 +23,7 @@ export default function MovieDetails() {
 
 
       <h1>{movie.title}</h1>
+      <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="" />
       <p>{movie.overview}</p>
 
     </div>

@@ -1,6 +1,33 @@
+.home-header {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &_left {
+    display: flex;
+    flex-direction: column;
+    & h2 {
+      font-weight: 400;
+    }
+    & h3 {
+      font-weight: 400;
+      font-size: 16px;
+      color: gray;
+    }
+  }
+  &_right {
+    width: 40px;
+    height: 40px;
+    background-color: red;
+  } 
+
+}
+
 //
 .coming-soon-sec {
-  background-color: red;
+  & h2 {
+    margin-bottom: 10px;
+  }
   padding: 15px 0 15px 20px;
   & ul {
     overflow-y: hidden;
@@ -10,4 +37,9 @@
   display: none;
 }
   }
+}
+
+// Cinema near you
+.cinema-sec {
+  padding: 10px 20px;
 }

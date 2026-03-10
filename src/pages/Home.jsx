@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchUpcomingMovies } from "../tmdb";
 import MovieCard from "../components/MovieCard";
+import Navbar from "../components/Navbar"
 import "./Home.scss";
 export default function Home() {
   const [movies, setMovies] = useState([]);
@@ -17,11 +18,11 @@ export default function Home() {
   return (
     <div className="home">
       <section className="home-header">
-        <div>
+        <div className="home-header_left">
           <h3>Welcome back</h3>
           <h2>Matias</h2>
         </div>
-        <div>
+        <div className="home-header_right">
         </div>
       </section>
       <section className="coming-soon-sec">
@@ -32,6 +33,11 @@ export default function Home() {
         ))}
         </ul>
       </section>
+      <section className="cinema-sec">
+        <h2>Cinema Near You</h2>
+
+      </section>
+      <Navbar />
     </div>
   );
 }
