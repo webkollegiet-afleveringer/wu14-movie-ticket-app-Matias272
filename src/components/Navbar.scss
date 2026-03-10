@@ -1,20 +1,25 @@
 @use "../styles/variables.scss" as *;
 .page-navbar {
-    max-width: 1200px;
+  max-width: 1200px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  padding: 20px;
+  & ul {
+    list-style: none;
     width: 100%;
-    position: fixed;
-    bottom: 0;
-    padding: 20px;
-    & ul {
-        list-style: none;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 10px;
-        & li:hover path {
-            cursor: pointer;
-            fill: #54A8E5;
-        }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    & li:hover path {
+      cursor: pointer;
+      fill: #54a8e5;
     }
+    & li a.active {
+      path {
+        fill: black;
+      }
+    }
+  }
 }
