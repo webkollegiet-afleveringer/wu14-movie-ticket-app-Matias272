@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { fetchPopularMovies } from "../tmdb";
+import { fetchUpcomingMovies } from "../tmdb";
 import MovieCard from "../components/MovieCard";
-
+import "./Home.scss";
 export default function Home() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     const loadMovies = async () => {
-      const data = await fetchPopularMovies();
+      const data = await fetchUpcomingMovies();
       setMovies(data.results);
     };
 
@@ -15,15 +15,15 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
-      <h1>Now Showing</h1>
-
-      <div className="movies">
-        {movies.map(movie => (
+    <div className="home">
+      <section className="coming-soon-sec">
+        <h2>Coming Soon</h2>
+        <ul>
+          {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
-      </div>
-
+        </ul>
+      </section>
     </div>
   );
 }
