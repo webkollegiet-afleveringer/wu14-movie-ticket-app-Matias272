@@ -1,14 +1,19 @@
 import { Link } from "react-router";
-
-export default function MovieCard({ movie }) {
+import "./MovieCard.scss";
+export default function MovieCard({ movie, className }) {
 
   const img = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+  console.log(movie);
+  
 
   return (
     <Link to={`/movie/${movie.id}`}>
-      <div className="movie-card">
+      <div className={`movie-card ${className}`}>
         <img src={img} alt={movie.title} />
         <h3>{movie.title}</h3>
+        {className === "home" && (
+          <p>{movie.release_date}</p>
+        )}
       </div>
     </Link>
   );

@@ -16,11 +16,19 @@ export default function Home() {
 
   return (
     <div className="home">
+      <section className="home-header">
+        <div>
+          <h3>Welcome back</h3>
+          <h2>Matias</h2>
+        </div>
+        <div>
+        </div>
+      </section>
       <section className="coming-soon-sec">
         <h2>Coming Soon</h2>
         <ul>
           {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
+          <MovieCard key={movie.id} movie={movie} className={"home"} />
         ))}
         </ul>
       </section>

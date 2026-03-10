@@ -1,0 +1,12 @@
+.page-navbar {
+    display: flex;
+    justify-content: center;
+    padding: 15px 25px;
+    & ul {
+        background-color: red;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+    }
+}
