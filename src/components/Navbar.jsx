@@ -20,7 +20,7 @@ export default function Navbar() {
           </svg>
         </li>
         <li>
-          <NavLink to={"/#"}></NavLink>
+          <NavLink to={"/explore"}></NavLink>
           <svg
             width="24"
             height="24"

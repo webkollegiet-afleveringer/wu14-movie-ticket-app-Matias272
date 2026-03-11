@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import MovieDetails from "./pages/MovieDetails";
 import SeatSelection from "./pages/SeatSelection";
 import Checkout from "./pages/Checkout";
+import Explore from "./pages/Explore";
 import Ticket from "./pages/Ticket";
 import "./styles/main.scss";
 export default function App() {
@@ -12,7 +13,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/movie/:id" element={<MovieDetails />} />
+        <Route path="/explore" element={<Explore />} />
         <Route path="/movie/:id" element={<MovieDetails />} />
         <Route path="/seats/:id" element={<SeatSelection />} />
         <Route path="/checkout" element={<Checkout />} />

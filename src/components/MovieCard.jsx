@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import "./MovieCard.scss";
 export default function MovieCard({ movie, className }) {
 
-  const img = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+  const img = `https://image.tmdb.org/t/p/w500${!className === "home" ? movie.poster_path : movie.backdrop_path}`;
   console.log(movie);
   
 

@@ -1,0 +1,58 @@
+.movie-det {
+  &_header {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & button {
+      background-color: rgba(0, 0, 0, 0);
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  &_img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    max-width: 400px;
+    width: 100%;
+    img {
+      border-radius: 10px;
+      width: 100%;
+    }
+  }
+  &_content {
+    background-color: gray;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    &_info {
+      &_genre-ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        li {
+          font-size: 16px;
+          color: gray;
+          font-weight: 400;
+          background-color: rgb(58, 58, 58);
+          padding: 2px 12px;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}
+.book-btn {
+  color: white;
+  border-radius: 8px;
+  font-size: 18px;
+  padding: 15px 65px;
+  background-color: #54a8e5;
+  &:hover {
+    background-color: #4284b3;
+    cursor: pointer;
+  }
+}
