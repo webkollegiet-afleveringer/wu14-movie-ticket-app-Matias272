@@ -14,11 +14,11 @@
     gap: 10px;
     & li:hover path {
       cursor: pointer;
-      fill: #54a8e5;
+      fill: $skyblue;
     }
     & li a.active {
       path {
-        fill: black;
+        fill: $skyblue;
       }
     }
   }

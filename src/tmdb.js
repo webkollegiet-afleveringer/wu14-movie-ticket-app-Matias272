@@ -21,3 +21,11 @@ export const fetchMovieDetails = async (id) => {
   );
   return res.json();
 };
+export const searchMovies = async (query) => {
+
+  const res = await fetch(
+    `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`
+  );
+
+  return res.json();
+};

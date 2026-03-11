@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchUpcomingMovies } from "../tmdb";
 import MovieCard from "../components/MovieCard";
 import Navbar from "../components/Navbar"
+import SearchBar from "../components/SearchBar"
 import "./Home.scss";
 export default function Home() {
   const [movies, setMovies] = useState([]);
@@ -25,6 +26,7 @@ export default function Home() {
         <div className="home-header_right">
         </div>
       </section>
+      <SearchBar />
       <section className="coming-soon-sec">
         <h2>Coming Soon</h2>
         <ul>
