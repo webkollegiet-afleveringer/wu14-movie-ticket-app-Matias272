@@ -29,3 +29,17 @@ export const searchMovies = async (query) => {
 
   return res.json();
 };
+
+export const fetchNowPlayingMovies = async () => {
+  const res = await fetch(
+    `${BASE_URL}/movie/now_playing?api_key=${API_KEY}`
+  );
+  return res.json();
+};
+
+export const fetchTopRatedMovies = async () => {
+  const res = await fetch(
+    `${BASE_URL}/movie/top_rated?api_key=${API_KEY}`
+  );
+  return res.json();
+};

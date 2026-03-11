@@ -23,7 +23,6 @@
     }
   }
   &_content {
-    background-color: gray;
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
@@ -54,5 +53,10 @@
   &:hover {
     background-color: #4284b3;
     cursor: pointer;
+  }
+}
+@media  (max-width:678px) {
+  .movie-det_content {
+    flex-direction: column;
   }
 }

@@ -1,9 +1,17 @@
 @use "../styles/variables.scss" as *;
-.page-navbar {
-  max-width: 1200px;
-  width: 100%;
+.nav-bar-shadow {
+  box-shadow: 0 -2px 8px rgba(255, 255, 255, 0.08);
+  width: 100vw;
   position: fixed;
   bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+}
+.page-navbar {
+  background-color: $bk;
+  max-width: 1200px;
+  width: 100%;
   padding: 20px;
   & ul {
     list-style: none;
