@@ -85,7 +85,6 @@ export default function Explore() {
             />
         </div>
       )}
-
       <div className="explore_tabs">
         <button 
           className={`tab ${activeTab === "now_showing" ? "active" : ""}`}

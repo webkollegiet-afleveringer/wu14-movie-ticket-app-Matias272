@@ -1,3 +1,4 @@
+@use "../styles/variables.scss" as *;
 .movie-det {
   &_header {
     padding: 15px 20px;
@@ -41,14 +42,20 @@
           border-radius: 5px;
         }
       }
+      p {
+        color: $text-2;
+      }
     }
   }
 }
+//
 .book-btn {
+  width: 100%;
+  padding: 20px;
   color: white;
-  border-radius: 8px;
+
+  border-radius: 12px;
   font-size: 18px;
-  padding: 15px 65px;
   background-color: #54a8e5;
   &:hover {
     background-color: #4284b3;

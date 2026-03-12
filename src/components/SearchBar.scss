@@ -7,14 +7,24 @@
     background-color: $gk;
     width: 100%;
     border: 1px solid $text-3;
-
-    padding: 15px 25px;
+    padding: 15px 45px;
     border-radius: 12px;
     &:focus {
       outline: none;
       border-color: $skyblue;
-    }
+    } 
   }
+  &_icon {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 17px;
+  }
+}
+.search-overlay input:focus + .search-overlay_icon,
+.search-overlay input:not(:placeholder-shown) + .search-overlay_icon {
+  opacity: 0;
 }
 
 
