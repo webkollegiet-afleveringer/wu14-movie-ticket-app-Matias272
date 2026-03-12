@@ -1,17 +1,37 @@
+@use "../styles/variables.scss" as *;
 .search-overlay {
-  padding: 10px 20px;
+  padding: 15px 20px;
   position: relative;
-}
+  & input {
+    color: white;
+    background-color: $gk;
+    width: 100%;
+    border: 1px solid $text-3;
 
-.search-overlay input {
-  color: #d3d3d3;
-  background-color: #696D74;
-  width: 220px;
-  padding: 8px;
-  border-radius: 8px;
-  border: none;
-  &:focus {
-    outline: none;
+    padding: 15px 25px;
+    border-radius: 12px;
+    &:focus {
+      outline: none;
+      border-color: $skyblue;
+    }
   }
 }
 
+
+.search-results {
+  position: absolute;
+  top: 62px;
+  left: 0;
+  width: 100%;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px 20px;
+  background: orange;
+  border-radius: 10px;
+
+  z-index: 1000;
+  &_ul {
+    display: flex;
+    gap: 20px;
+  }
+}

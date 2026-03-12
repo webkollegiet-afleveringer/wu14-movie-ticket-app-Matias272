@@ -5,6 +5,7 @@ import Search from "../assets/icons/btnSearch.svg";
 import { fetchNowPlayingMovies, fetchUpcomingMovies, fetchTopRatedMovies } from "../tmdb";
 import MovieCard from "../components/MovieCard";
 import "./Explore.scss";
+import Navbar from "../components/Navbar";
 
 export default function Explore() {
   const navigate = useNavigate();
@@ -81,7 +82,7 @@ export default function Explore() {
             placeholder="Search movies..." 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-          />
+            />
         </div>
       )}
 
@@ -152,6 +153,8 @@ export default function Explore() {
           ))}
         </div>
       </div>
+      <Navbar />
     </section>
+
   );
 }

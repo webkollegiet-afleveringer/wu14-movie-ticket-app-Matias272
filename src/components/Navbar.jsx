@@ -38,7 +38,7 @@ export default function Navbar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/#"}>
+            <NavLink to={"/w"}>
               <svg
                 width="24"
                 height="24"
@@ -54,7 +54,7 @@ export default function Navbar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/#"}>
+            <NavLink to={"/profile"}>
               <svg
                 width="24"
                 height="24"
