@@ -1,12 +1,11 @@
+@use "../styles/variables.scss" as *;
 .explore {
     padding-bottom: 40px;
-
     &_header {
         padding: 15px 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-
         h2 {
             flex: 1;
             text-align: center;
@@ -14,7 +13,6 @@
             font-size: 18px;
             font-weight: 600;
         }
-
         button {
             background: none;
             border: none;
@@ -29,9 +27,7 @@
             }
         }
     }
-
     &_search {
-
         input {
             width: 100%;
             padding: 12px 15px;
@@ -49,9 +45,14 @@
     }
 
     &_tabs {
+        margin-left: 20px;
+        width: 300px;
+        border-radius: 12px;
+        background-color: $gk;
         display: flex;
+        justify-content: space-between;
         gap: 15px;
-        padding: 20px 20px;
+        padding: 10px;
         border-bottom: 1px solid #333;
 
         .tab {
@@ -61,7 +62,7 @@
             font-size: 14px;
             font-weight: 500;
             cursor: pointer;
-            padding: 8px 12px;
+            padding: 10px 12px;
             position: relative;
 
             &.active {

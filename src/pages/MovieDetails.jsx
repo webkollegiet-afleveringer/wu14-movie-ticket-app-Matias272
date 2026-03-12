@@ -51,7 +51,6 @@ export default function MovieDetails() {
           <button className="book-btn">Book a ticket</button>
         </div>
       </section>
-      <Navbar />
     </div>
   );
 }

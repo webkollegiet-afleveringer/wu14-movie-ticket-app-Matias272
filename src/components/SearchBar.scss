@@ -38,10 +38,16 @@
   padding: 10px 20px;
   background: orange;
   border-radius: 10px;
-
+  display: flex;
   z-index: 1000;
   &_ul {
     display: flex;
     gap: 20px;
+  }
+}
+.movie-card.search {
+
+  img {
+    width: 100px;
   }
 }

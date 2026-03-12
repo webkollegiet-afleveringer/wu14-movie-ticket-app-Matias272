@@ -4,8 +4,9 @@ import BackIcon from "../assets/icons/btnBack.svg";
 import Search from "../assets/icons/btnSearch.svg";
 import { fetchNowPlayingMovies, fetchUpcomingMovies, fetchTopRatedMovies } from "../tmdb";
 import MovieCard from "../components/MovieCard";
-import "./Explore.scss";
 import Navbar from "../components/Navbar";
+import SearchBar from "../components/SearchBar"
+import "./Explore.scss";
 
 export default function Explore() {
   const navigate = useNavigate();
@@ -76,14 +77,7 @@ export default function Explore() {
       </div>
 
       {showSearch && (
-        <div className="explore_search">
-          <input 
-            type="text" 
-            placeholder="Search movies..." 
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            />
-        </div>
+        <SearchBar />
       )}
       <div className="explore_tabs">
         <button 
