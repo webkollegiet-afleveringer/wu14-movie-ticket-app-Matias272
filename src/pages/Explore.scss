@@ -1,109 +1,81 @@
 @use "../styles/variables.scss" as *;
 .explore {
-    padding-bottom: 40px;
+  padding-bottom: 40px;
+  &_header {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+  &_tabs {
+    margin: 0 auto;
+    width: 500px;
+    border-radius: 12px;
+    background-color: $gk;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    .tab {
+      width: 100%;
+      background: none;
+      border: none;
+      color: #888;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 10px;
+      position: relative;
+      &.active {
+        color: white;
+        background-color: $skyblue;
+        border-radius: 6px;
+      }
+    }
+  }
+
+  &_sec {
+    padding: 10px 20px;
     &_header {
-        padding: 15px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        h2 {
-            flex: 1;
-            text-align: center;
-            margin: 0;
-            font-size: 18px;
-            font-weight: 600;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .see-more {
+        color: $text-3;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        &:hover {
+          text-decoration: underline;
         }
-        button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 5px;
-            display: flex;
-            align-items: center;
-
-            img {
-                width: 24px;
-                height: 24px;
-            }
-        }
+      }
     }
-    &_tabs {
-        margin: 0 auto;
-        width: 500px;
-        border-radius: 12px;
-        background-color: $gk;
-        display: flex;
-        justify-content: space-between;
-        padding: 10px;
-        .tab {
-            width: 100%;
-            background: none;
-            border: none;
-            color: #888;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            padding: 10px;
-            position: relative;
-            &.active {
-                color: white;
-                background-color: $skyblue;
-                border-radius: 6px;
-            }
-        }
-    }
-
-    &_sec {
-        padding: 20px;
-        h2 {
-            margin-bottom: 10px;
-        }
-    }
-
-    &_section {
-        padding: 20px;
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-
-            h3 {
-                margin: 0;
-                font-size: 18px;
-                font-weight: 600;
-            }
-
-            .see-more {
-                color: #4a9eff;
-                text-decoration: none;
-                font-size: 12px;
-                font-weight: 500;
-
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
-        }
-
-        .movies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
-        }
-    }
+  }
 }
 
-
-
-
 // Mobile
-@media (max-width:678px) {
-    .explore {
-        &_tabs {
-            margin: 0 20px;
-            width: auto;
-        }
+@media (max-width: 678px) {
+  .explore {
+    &_tabs {
+      margin: 0 20px;
+      width: auto;
     }
+  }
 }

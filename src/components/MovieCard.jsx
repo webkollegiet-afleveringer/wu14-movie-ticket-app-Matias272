@@ -2,8 +2,7 @@ import { Link } from "react-router";
 import "./MovieCard.scss";
 
 export default function MovieCard({ movie, className }) {
-  const path =
-    className === "home" ? movie.backdrop_path : movie.poster_path;
+  const path = className === "home" ? movie.backdrop_path : movie.poster_path;
 
   const img = path
     ? `https://image.tmdb.org/t/p/w500${path}`
@@ -11,7 +10,7 @@ export default function MovieCard({ movie, className }) {
 
   const handleError = (e) => {
     e.target.src = `https://placehold.co/500x750?text=${encodeURIComponent(
-      movie.title
+      movie.title,
     )}`;
   };
 
@@ -35,7 +34,9 @@ export default function MovieCard({ movie, className }) {
         <img src={img} alt={movie.title} onError={handleError} />
         <h3>{movie.title}</h3>
         {className === "home" && <p>{formatDate(movie.release_date)}</p>}
-        {className === "explore" && <span className="stars">{renderStars(movie.vote_average)}</span>}
+        {(className === "recommended" || className === "explore") && (
+          <span className="stars">{renderStars(movie.vote_average)}</span>
+        )}
       </div>
     </Link>
   );
