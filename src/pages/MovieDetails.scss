@@ -1,5 +1,6 @@
 @use "../styles/variables.scss" as *;
 .movie-det {
+  margin-bottom: 20px;
   &_header {
     padding: 15px 20px;
     display: flex;
@@ -24,26 +25,28 @@
     }
   }
   &_content {
-    padding: 15px 20px;
+    padding: 0 20px;
     display: flex;
-    justify-content: space-between;
     gap: 20px;
     &_info {
-      &_genre-ul {
-        list-style: none;
-        display: flex;
-        gap: 20px;
-        li {
-          font-size: 16px;
-          color: gray;
-          font-weight: 400;
-          background-color: rgb(58, 58, 58);
-          padding: 2px 12px;
-          border-radius: 5px;
-        }
-      }
       p {
+        font-size: 14px;
+        margin-bottom: 10px;
+        max-width: 400px;
         color: $text-2;
+      }
+    }
+    &_genre-ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      li {
+        font-size: 14px;
+        color: #B2B5BB;
+        background-color: #252932;
+        font-weight: 400;
+        padding: 5px 15px;
+        border-radius: 5px;
       }
     }
   }
@@ -53,17 +56,27 @@
   width: 100%;
   padding: 20px;
   color: white;
-
   border-radius: 12px;
   font-size: 18px;
-  background-color: #54a8e5;
+  background-color: $skyblue;
   &:hover {
-    background-color: #4284b3;
+    background-color: $skyblue;
     cursor: pointer;
   }
 }
+
+// Mobile
 @media  (max-width:678px) {
   .movie-det_content {
     flex-direction: column;
+  }
+  .movie-det {
+    &_img {
+      
+      width: 100%;
+      img {
+        width: 275px;
+      }
+    }
   }
 }
