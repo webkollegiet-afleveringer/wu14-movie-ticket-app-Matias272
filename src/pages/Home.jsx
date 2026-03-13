@@ -29,7 +29,7 @@ export default function Home() {
       <SearchBar />
       <section className="coming-soon-sec">
         <h2>Coming Soon</h2>
-        <ul>
+        <ul className="movies-ul">
           {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} className={"home"} />
         ))}

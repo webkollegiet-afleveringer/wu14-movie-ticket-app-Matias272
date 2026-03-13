@@ -24,17 +24,9 @@
 
 //
 .coming-soon-sec {
+  padding: 15px 0 15px 20px;
   & h2 {
     margin-bottom: 10px;
-  }
-  padding: 15px 0 15px 20px;
-  & ul {
-    overflow-y: hidden;
-    display: flex;
-    gap: 20px;
-    &::-webkit-scrollbar {
-      display: none;
-    }
   }
 }
 

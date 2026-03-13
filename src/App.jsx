@@ -7,7 +7,7 @@ import Profile from "./pages/Profile";
 import "./styles/main.scss";
 export default function App() {
   return (
-    <div className="page-wrapper">
+    <main className="page-wrapper">
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -16,7 +16,7 @@ export default function App() {
         <Route path="/movie/:id" element={<MovieDetails />} />
       </Routes>
     </BrowserRouter>
-    </div>
+    </main>
   );
 }
 

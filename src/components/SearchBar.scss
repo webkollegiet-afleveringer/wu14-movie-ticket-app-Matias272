@@ -36,7 +36,9 @@
   left: 0;
   width: 100%;
   overflow-y: auto;
+  z-index: 10;
   padding: 10px 20px;
+  padding-bottom: 50px;
   background: $gk;
   &_ul {
     display: flex;
@@ -46,14 +48,4 @@
     display: none;
   }
 }
-.movie-card.search {
-  h3 {
-    font-weight: 500;
-    font-size: 14px;
-  }
-  img {
-    border-radius: 0;
-    margin-bottom: 3px;
-    width: 165px;
-  }
-}
+

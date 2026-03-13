@@ -15,7 +15,6 @@ export default function Explore() {
   const [recommendedMovies, setRecommendedMovies] = useState([]);
   const [displayMovies, setDisplayMovies] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("");
   const [showSearch, setShowSearch] = useState(false);
 
   useEffect(() => {
@@ -55,17 +54,12 @@ export default function Explore() {
     loadTrendingMovies();
   }, []);
 
-  const getStarRating = (rating) => {
-    return Math.round((rating / 10) * 5);
-  };
+  
 
-  const renderStars = (rating) => {
-    const stars = getStarRating(rating);
-    return "★".repeat(stars) + "☆".repeat(5 - stars);
-  };
+  
 
   return (
-    <section className="explore">
+    <div className="explore">
       <div className="explore_header">
         <button onClick={() => navigate(-1)}>
           <img src={BackIcon} alt="Back" />
@@ -94,60 +88,44 @@ export default function Explore() {
         </button>
       </div>
 
-      <div className="explore_movies">
+      <section className="explore_sec">
+        <h2>Top Movies</h2>
         {loading ? (
           <p>Loading movies...</p>
         ) : displayMovies.length > 0 ? (
-          <div className="movies-grid">
-            {displayMovies.slice(0, 6).map((movie) => (
-              <div key={movie.id} className="movie-item">
+          <ul className="explore_movies_ul movies-ul">
+            {displayMovies.map((movie) => (
+              <li key={movie.id} className="movie-item">
                 <MovieCard movie={movie} className="explore" />
                 <div className="movie-rating">
-                  <span className="stars">{renderStars(movie.vote_average)}</span>
                 </div>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         ) : (
           <p>No movies found</p>
         )}
-      </div>
+      </section>
 
-      <div className="explore_section">
-        <div className="section-header">
-          <h3>Top Movies</h3>
-          <a href="#" className="see-more">See more</a>
-        </div>
-        <div className="movies-grid">
-          {topMovies.map((movie) => (
-            <div key={movie.id} className="movie-item">
-              <MovieCard movie={movie} className="explore" />
-              <div className="movie-rating">
-                <span className="stars">{renderStars(movie.vote_average)}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="explore_section">
+      <section className="explore_sec">
         <div className="section-header">
           <h3>Recommended</h3>
           <a href="#" className="see-more">See more</a>
         </div>
-        <div className="movies-grid">
-          {recommendedMovies.map((movie) => (
-            <div key={movie.id} className="movie-item">
-              <MovieCard movie={movie} className="explore" />
+        <ul className="explore_movies_ul movies-ul">
+          {topMovies.map((movie) => (
+            <li key={movie.id} className="movie-item">
+              <MovieCard movie={movie} className="recommended" />
               <div className="movie-rating">
-                <span className="stars">{renderStars(movie.vote_average)}</span>
               </div>
-            </div>
+            </li>
           ))}
-        </div>
-      </div>
+        </ul>
+      </section>
+
+      
       <Navbar />
-    </section>
+    </div>
 
   );
 }

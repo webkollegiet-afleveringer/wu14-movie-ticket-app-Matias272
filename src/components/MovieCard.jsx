@@ -21,6 +21,13 @@ export default function MovieCard({ movie, className }) {
       year: "numeric",
     });
   };
+  const getStarRating = (rating) => {
+    return Math.round((rating / 10) * 5);
+  };
+  const renderStars = (rating) => {
+    const stars = getStarRating(rating);
+    return "★".repeat(stars) + "☆".repeat(5 - stars);
+  };
 
   return (
     <Link to={`/movie/${movie.id}`}>
@@ -28,6 +35,7 @@ export default function MovieCard({ movie, className }) {
         <img src={img} alt={movie.title} onError={handleError} />
         <h3>{movie.title}</h3>
         {className === "home" && <p>{formatDate(movie.release_date)}</p>}
+        {className === "explore" && <span className="stars">{renderStars(movie.vote_average)}</span>}
       </div>
     </Link>
   );
