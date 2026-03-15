@@ -1,5 +1,6 @@
 @use "../styles/variables.scss" as *;
 .movie-det {
+  min-height: 100vh;
   margin-bottom: 20px;
   &_header {
     padding: 15px 20px;
@@ -18,31 +19,39 @@
     display: flex;
     justify-content: center;
     max-width: 400px;
-    width: 100%;
     img {
       border-radius: 10px;
       width: 100%;
+      height: 100%;
     }
   }
   &_content {
-    padding: 0 20px;
     display: flex;
+    justify-content: center;
+    padding: 0 20px;
     gap: 20px;
     &_info {
+      position: relative;
+      h2 {
+        margin-bottom: 10px;
+      }
+      width: 100%;
       p {
         font-size: 14px;
         margin-bottom: 10px;
-        max-width: 400px;
+        max-width: 600px;
         color: $text-2;
       }
     }
     &_genre-ul {
       list-style: none;
       display: flex;
-      gap: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
       li {
         font-size: 14px;
-        color: #B2B5BB;
+        color: #b2b5bb;
         background-color: #252932;
         font-weight: 400;
         padding: 5px 15px;
@@ -52,7 +61,17 @@
   }
 }
 //
+.read-more {
+  margin-left: 5px;
+  background-color: #00000000;
+  color: $skyblue;
+  text-decoration: underline;
+}
 .book-btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-top: auto;
   width: 100%;
   padding: 20px;
   color: white;
@@ -66,17 +85,42 @@
 }
 
 // Mobile
-@media  (max-width:678px) {
-  .movie-det_content {
-    flex-direction: column;
-  }
+@media (max-width: 678px) {
   .movie-det {
-    &_img {
-      
-      width: 100%;
-      img {
-        width: 275px;
+    &_content {
+      min-height: 95vh;
+      flex-direction: column;
+      &_info {
+        p:nth-child(5) {
+          margin-bottom: 25px;
+        }
       }
+    }
+    &_img {
+      max-width: 100%;
+      display: flex;
+      justify-content: center;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+  .book-btn {
+    position: initial;
+
+    margin-top: auto;
+    width: 100%;
+    padding: 20px;
+    color: white;
+    border-radius: 12px;
+    font-size: 18px;
+    background-color: $skyblue;
+    &:hover {
+      background-color: $skyblue;
+      cursor: pointer;
     }
   }
 }
