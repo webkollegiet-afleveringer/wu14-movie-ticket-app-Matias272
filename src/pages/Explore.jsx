@@ -17,7 +17,6 @@ export default function Explore() {
   const [loading, setLoading] = useState(true);
   const [showSearch, setShowSearch] = useState(false);
 
-  // FIRST SECTION (Now Playing / Upcoming)
   useEffect(() => {
     const loadMovies = async () => {
       setLoading(true);
@@ -40,7 +39,6 @@ export default function Explore() {
     loadMovies();
   }, [activeTab]);
 
-  // SECOND SECTION (Top Movies)
   useEffect(() => {
     const loadTopMovies = async () => {
       try {
@@ -87,7 +85,6 @@ export default function Explore() {
         </button>
       </div>
 
-      {/* FIRST SECTION */}
       <section className="explore_sec">
         <div className="explore_sec_header">
           <h2>{activeTab === "now_playing" ? "Now Playing Top Movies" : "Upcoming"}</h2>

@@ -66,6 +66,9 @@
   background-color: #00000000;
   color: $skyblue;
   text-decoration: underline;
+  &:hover {
+    cursor: pointer;
+  }
 }
 .book-btn {
   position: absolute;
