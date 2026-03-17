@@ -1,22 +1,25 @@
-const express = import('express');
-const mongoose = import('mongoose');
-const cors = import('cors');
-import('dotenv').config();
+import express from 'express';
+import mongoose from 'mongoose';
+
+const cors = import("cors");
+import("dotenv").config();
 const app = express();
-const showtimeRoutes = import('./routes/showtimeRoutes');
+const showtimeRoutes = import("./routes/showtimeRoutes");
 
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log("Connected to Database"))
-    .catch(err => console.error("Connection failed:", err))
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("Connected to Database"))
+  .catch((err) => console.error("Connection failed:", err));
 
 app.get("/", (req, res) => {
-    res.send("Server is running");
+  res.send("Server is running");
 });
-app.use('/api/showtimes', showtimeRoutes);
-const PORT = process.env.PORT || 5000;
+
+const PORT = process.env.PORT;
+
 app.listen(PORT, () => {
-    console.log(`Server is running in PORT:${PORT}`);
-})
+  console.log(`Server is running in PORT:${PORT}`);
+});
