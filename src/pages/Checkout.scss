@@ -1,0 +1,62 @@
+@use "../styles/variables.scss" as *;
+
+.checkout {
+  min-height: 100vh;
+
+  &_header {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+    }
+  }
+
+  &_summary {
+    margin: 0 16px 16px;
+    padding: 14px;
+    border-radius: 12px;
+    background: #252932;
+
+    p {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    small {
+      display: block;
+      color: $text-2;
+      margin-bottom: 3px;
+    }
+  }
+
+  &_form {
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    input {
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #32363d;
+      background: #252932;
+      color: #fff;
+    }
+  }
+}
+
+.two-col {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.error-text {
+  color: #f07070;
+  font-size: 13px;
+}

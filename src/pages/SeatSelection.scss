@@ -1,0 +1,55 @@
+@use "../styles/variables.scss" as *;
+
+.seat-sel {
+  min-height: 100vh;
+  padding-bottom: 110px;
+
+  &_header {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+    }
+  }
+
+  &_info {
+    text-align: center;
+    margin-bottom: 18px;
+
+    p {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    small {
+      color: $text-2;
+    }
+  }
+
+  &_footer {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1200px;
+    padding: 16px 20px;
+    background: linear-gradient(to top, #1b1e25 75%, transparent);
+  }
+
+  &_sum {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    color: $text-2;
+
+    strong {
+      color: #fff;
+    }
+  }
+}
