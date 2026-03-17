@@ -1,8 +1,8 @@
-/// <reference types="node" />
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import authRoutes from "./src/routes/authRoutes.js";
 
 dotenv.config();
 
@@ -15,6 +15,8 @@ app.get("/", (req, res) => {
   res.send("API running");
 });
 
+// Routes
+app.use("/api/auth", authRoutes);
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
@@ -22,5 +24,3 @@ mongoose
     app.listen(5000, () => console.log("Server running on port 5000"));
   })
   .catch((err) => console.log(err));
-console.log(process.env.JWT_SECRET);
-console.log("hej");
