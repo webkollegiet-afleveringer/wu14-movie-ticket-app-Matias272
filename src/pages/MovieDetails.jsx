@@ -100,12 +100,12 @@ export default function MovieDetails() {
               </button>
             )}
           </p>
-          <button
+          {/* <button
             className="book-btn"
             onClick={() => navigate(`/booking/${id}/cinema`)}
           >
             Book a Ticket
-          </button>
+          </button> */}
         </div>
       </section>
     </div>
