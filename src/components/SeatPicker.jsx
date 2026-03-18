@@ -29,14 +29,11 @@ export default function SeatPicker({ seats, selectedSeats, onSeatsChange }) {
     <div className="seat-picker">
       <div className="seat-picker_screen">
         <div className="screen-curve" />
-        <p>Screen</p>
       </div>
 
       <div className="seat-picker_grid">
         {ROWS.map((row) => (
           <div key={row} className="seat-row">
-            <span className="row-label">{row}</span>
-
             <div className="row-group">
               {seatsInRow(row, (c) => c <= 5).map((seat) => (
                 <button
@@ -62,8 +59,6 @@ export default function SeatPicker({ seats, selectedSeats, onSeatsChange }) {
                 />
               ))}
             </div>
-
-            <span className="row-label">{row}</span>
           </div>
         ))}
       </div>

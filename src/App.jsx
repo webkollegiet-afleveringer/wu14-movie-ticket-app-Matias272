@@ -6,7 +6,6 @@ import MovieDetails from "./pages/MovieDetails";
 import Explore from "./pages/Explore";
 import Profile from "./pages/Profile";
 import CinemaPicker from "./pages/CinemaPicker";
-import SeatSelection from "./pages/SeatSelection";
 import Checkout from "./pages/Checkout";
 import Ticket from "./pages/Ticket";
 import "./styles/main.scss";
@@ -22,7 +21,7 @@ export default function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/movie/:id" element={<MovieDetails />} />
             <Route path="/booking/:movieId/cinema" element={<CinemaPicker />} />
-            <Route path="/booking/:movieId/seats" element={<SeatSelection />} />
+            <Route path="/booking/:movieId/seats" element={<CinemaPicker />} />
             <Route path="/booking/:movieId/checkout" element={<Checkout />} />
             <Route path="/booking/ticket" element={<Ticket />} />
           </Routes>

@@ -37,7 +37,7 @@ export default function Checkout() {
   const [processing, setProcessing] = useState(false);
 
   if (!booking.showtime?.id || !booking.selectedSeats?.length) {
-    navigate(`/booking/${movieId}/seats`, { replace: true });
+    navigate(`/booking/${movieId}/cinema`, { replace: true });
     return null;
   }
 

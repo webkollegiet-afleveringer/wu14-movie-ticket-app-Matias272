@@ -1,3 +1,5 @@
+@use "../styles/variables.scss" as *;
+
 .home-header {
   padding: 15px 20px;
   display: flex;
@@ -33,4 +35,98 @@
 // Cinema near you
 .cinema-sec {
   padding: 10px 20px;
+
+  &_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    button {
+      background: transparent;
+      color: $text-3;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
+
+  &_list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+.near-cinema-card {
+  display: flex;
+  gap: 14px;
+  background-color: #20242d;
+  border-radius: 14px;
+  padding: 10px;
+
+  &_logo {
+    width: 74px;
+    height: 74px;
+    border-radius: 12px;
+    background: #fff;
+    color: #d72828;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  &_body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &_distance {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: $skyblue;
+    font-size: 18px;
+    margin-bottom: 3px;
+
+    span {
+      font-size: 16px;
+    }
+  }
+
+  &_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 3px;
+
+    h3 {
+      font-size: 36px;
+      line-height: 1;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &_rating {
+    color: $text-2;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    span {
+      color: #ffb424;
+    }
+  }
+
+  &_time {
+    color: $text-2;
+    font-size: 22px;
+  }
 }

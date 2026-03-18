@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { fetchMovieDetails } from "../tmdb";
+import { useBooking } from "../context/BookingContext";
 import BackIcon from "../assets/icons/btnBack.svg";
 import Bookmark from "../assets/icons/btnBookmark.svg";
 import "./MovieDetails.scss";
@@ -8,6 +9,7 @@ import "./MovieDetails.scss";
 export default function MovieDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { updateBooking } = useBooking();
 
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -53,6 +55,21 @@ export default function MovieDetails() {
     movie.overview?.length > 150
       ? movie.overview.slice(0, 150) + ""
       : movie.overview;
+
+  const handleBookTicket = () => {
+    updateBooking({
+      movie: {
+        id: String(movie.id),
+        title: movie.title,
+        poster: movie.poster_path || "",
+      },
+      selectedSeats: [],
+      showtime: null,
+      cinema: null,
+    });
+
+    navigate(`/booking/${id}/cinema`);
+  };
 
   return (
     <div className="movie-det">
@@ -100,12 +117,12 @@ export default function MovieDetails() {
               </button>
             )}
           </p>
-          {/* <button
+          <button
             className="book-btn"
-            onClick={() => navigate(`/booking/${id}/cinema`)}
+            onClick={handleBookTicket}
           >
             Book a Ticket
-          </button> */}
+          </button>
         </div>
       </section>
     </div>
