@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { fetchUpcomingMovies } from "../tmdb";
 import { fetchCinemas } from "../bookingApi";
+import { useAuth } from "../context/AuthContext";
 import MovieCard from "../components/MovieCard";
 import Navbar from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
@@ -26,8 +28,13 @@ function cinemaMeta(name) {
 }
 
 export default function Home() {
+  const navigate = useNavigate();
+  const { user, isAuthenticated, logout } = useAuth();
   const [movies, setMovies] = useState([]);
   const [cinemas, setCinemas] = useState([]);
+
+  const displayName = user?.email?.split("@")[0] || "Guest";
+  const avatarText = displayName.slice(0, 1).toUpperCase();
 
   useEffect(() => {
     const loadMovies = async () => {
@@ -55,10 +62,33 @@ export default function Home() {
     <div className="home">
       <section className="home-header">
         <div className="home-header_left">
-          <h3>Welcome back</h3>
-          <h2>Matias</h2>
+          <h3>{isAuthenticated ? "Welcome back" : "Welcome"}</h3>
+          <h2>{displayName}</h2>
         </div>
-        <div className="home-header_right"></div>
+        <div className="home-header_right">
+          {isAuthenticated ? (
+            <>
+              <button
+                type="button"
+                className="header-action"
+                onClick={() => navigate("/profile")}
+              >
+                {avatarText}
+              </button>
+              <button type="button" className="header-link" onClick={logout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <button
+              type="button"
+              className="header-link"
+              onClick={() => navigate("/profile")}
+            >
+              Login / Register
+            </button>
+          )}
+        </div>
       </section>
       <SearchBar />
       <section className="coming-soon-sec">
