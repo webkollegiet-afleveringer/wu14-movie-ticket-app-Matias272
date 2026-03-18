@@ -85,7 +85,7 @@ export default function Home() {
                   <figcaption className="near-cinema-card_body">
                     <p className="near-cinema-card_distance">
                       <img src={BioLocation} alt="" />
-                      {cinema.distanceKm.toFixed(1)} Kilometers
+                      {cinema.distanceKm} Kilometers
                     </p>
                     <div className="near-cinema-card_row">
                       <h3>{cinema.name}</h3>
