@@ -3,27 +3,6 @@
 .seat-picker {
   padding: 0;
 
-  &_screen {
-    text-align: center;
-    margin-bottom: 24px;
-
-    .screen-curve {
-      width: 88%;
-      height: 22px;
-      margin: 0 auto;
-      border-radius: 120px 120px 0 0;
-      background: radial-gradient(
-        ellipse at center,
-        rgba(84, 168, 229, 0.5) 0%,
-        rgba(84, 168, 229, 0.2) 45%,
-        rgba(84, 168, 229, 0) 100%
-      );
-      box-shadow:
-        0 -1px 0 rgba(84, 168, 229, 0.9),
-        inset 0 -14px 22px rgba(13, 18, 27, 0.8);
-    }
-  }
-
   &_grid {
     display: flex;
     flex-direction: column;

@@ -19,23 +19,29 @@ export default function SeatPicker({ seats, selectedSeats, onSeatsChange }) {
     return "available";
   };
 
+  const isHiddenEdgeSeat = (row, col) =>
+    (row === ROWS[0] || row === ROWS[ROWS.length - 1]) &&
+    (col === 1 || col === 10);
+
   const seatsInRow = (row, colRange) =>
     seats.filter(
-      (s) =>
-        s.seatNumber.startsWith(row) && colRange(Number(s.seatNumber.slice(1))),
+      (s) => {
+        if (!s.seatNumber.startsWith(row)) return false;
+        const col = Number(s.seatNumber.slice(1));
+        if (isHiddenEdgeSeat(row, col)) return false;
+        return colRange(col);
+      },
     );
 
   return (
     <div className="seat-picker">
-      <div className="seat-picker_screen">
-        <div className="screen-curve" />
-      </div>
+     
 
       <div className="seat-picker_grid">
         {ROWS.map((row) => (
           <div key={row} className="seat-row">
             <div className="row-group">
-              {seatsInRow(row, (c) => c <= 5).map((seat) => (
+              {seatsInRow(row, (c) => c <= 4).map((seat) => (
                 <button
                   key={seat.seatNumber}
                   className={`seat ${getStatus(seat)}`}
@@ -49,7 +55,7 @@ export default function SeatPicker({ seats, selectedSeats, onSeatsChange }) {
             <div className="aisle" />
 
             <div className="row-group">
-              {seatsInRow(row, (c) => c > 5).map((seat) => (
+              {seatsInRow(row, (c) => c > 6).map((seat) => (
                 <button
                   key={seat.seatNumber}
                   className={`seat ${getStatus(seat)}`}
