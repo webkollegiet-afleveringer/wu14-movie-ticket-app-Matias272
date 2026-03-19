@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./src/routes/authRoutes.js";
 import bookingRoutes from "./src/routes/bookingRoutes.js";
+import bookmarkRoutes from "./src/routes/bookmarkRoutes.js";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/booking", bookingRoutes);
+app.use("/api/bookmarks", bookmarkRoutes);
  mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {

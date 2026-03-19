@@ -99,43 +99,58 @@ export default function Checkout() {
       </div>
 
       <form className="checkout_form" onSubmit={onSubmit}>
-        <input
-          name="name"
-          placeholder="Name"
-          value={form.name}
-          onChange={onChange}
-          required
-        />
-        <input
-          name="email"
-          placeholder="Email"
-          type="email"
-          value={form.email}
-          onChange={onChange}
-          required
-        />
-        <input
-          name="cardNumber"
-          placeholder="Card Number"
-          value={form.cardNumber}
-          onChange={onChange}
-          required
-        />
+        <label className="checkout_form_label" htmlFor="email">
+          <span>Your Email</span>
+          <input
+            name="email"
+            placeholder="email"
+            type="email"
+            value={form.email}
+            onChange={onChange}
+            required
+          />
+        </label>
+        <label className="checkout_form_label" htmlFor="name">
+          <span>Cardholder Name</span>
+          <input
+            name="name"
+            placeholder="name"
+            value={form.name}
+            onChange={onChange}
+            required
+          />
+        </label>
+        <label className="checkout_form_label" htmlFor="cardNumber">
+          <span>Card Number</span>
+          <input
+            name="cardNumber"
+            placeholder="Card Number"
+            value={form.cardNumber}
+            onChange={onChange}
+            required
+          />
+        </label>
         <div className="two-col">
-          <input
-            name="expiry"
-            placeholder="MM/YY"
-            value={form.expiry}
-            onChange={onChange}
-            required
-          />
-          <input
-            name="cvv"
-            placeholder="CVV"
-            value={form.cvv}
-            onChange={onChange}
-            required
-          />
+          <label className="checkout_form_label" htmlFor="expiry">
+            <span>Expiration Date</span>
+            <input
+              name="expiry"
+              placeholder="MM/YY"
+              value={form.expiry}
+              onChange={onChange}
+              required
+            />
+          </label>
+          <label className="checkout_form_label" htmlFor="cvv">
+            <span>CVV</span>
+            <input
+              name="cvv"
+              placeholder="CVV"
+              value={form.cvv}
+              onChange={onChange}
+              required
+            />
+          </label>
         </div>
 
         {error ? <p className="error-text">{error}</p> : null}

@@ -1,51 +1,51 @@
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { useAuth } from "./AuthContext";
+import { fetchUserBookmarks, toggleUserBookmark } from "../bookmarkApi";
 
-const BOOKMARKS_KEY = "bookmarked_movies";
 const BookmarkContext = createContext(null);
 
-function readBookmarks() {
-  try {
-    const raw = localStorage.getItem(BOOKMARKS_KEY);
-    const parsed = raw ? JSON.parse(raw) : [];
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
-}
-
 export function BookmarkProvider({ children }) {
-  const [bookmarks, setBookmarks] = useState(() => readBookmarks());
+  const { isAuthenticated, token } = useAuth();
+  const [bookmarks, setBookmarks] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const persist = (next) => {
-    setBookmarks(next);
-    localStorage.setItem(BOOKMARKS_KEY, JSON.stringify(next));
-  };
+  useEffect(() => {
+    if (!isAuthenticated || !token) {
+      setBookmarks([]);
+      return;
+    }
+
+    setLoading(true);
+    fetchUserBookmarks(token)
+      .then((result) => setBookmarks(result.bookmarks || []))
+      .catch(() => setBookmarks([]))
+      .finally(() => setLoading(false));
+  }, [isAuthenticated, token]);
 
   const isBookmarked = (movieId) =>
     bookmarks.some((movie) => String(movie.id) === String(movieId));
 
-  const toggleBookmark = (movie) => {
-    const exists = isBookmarked(movie.id);
-    if (exists) {
-      persist(bookmarks.filter((item) => String(item.id) !== String(movie.id)));
-      return false;
+  const toggleBookmark = async (movie) => {
+    if (!isAuthenticated || !token) {
+      throw new Error("Please log in to bookmark movies");
     }
 
-    const nextMovie = {
+    const result = await toggleUserBookmark(token, {
       id: movie.id,
       title: movie.title,
       poster_path: movie.poster_path || "",
       backdrop_path: movie.backdrop_path || "",
       release_date: movie.release_date || "",
       vote_average: movie.vote_average || 0,
-    };
-    persist([nextMovie, ...bookmarks]);
-    return true;
+    });
+
+    setBookmarks(result.bookmarks || []);
+    return result.bookmarked;
   };
 
   const value = useMemo(
-    () => ({ bookmarks, isBookmarked, toggleBookmark }),
-    [bookmarks],
+    () => ({ bookmarks, loading, isBookmarked, toggleBookmark }),
+    [bookmarks, loading],
   );
 
   return (

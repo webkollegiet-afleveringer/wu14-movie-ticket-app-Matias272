@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { fetchMovieDetails } from "../tmdb";
 import { useBooking } from "../context/BookingContext";
 import { useBookmarks } from "../context/BookmarkContext";
+import { useAuth } from "../context/AuthContext";
 import BackIcon from "../assets/icons/btnBack.svg";
 import Bookmark from "../assets/icons/btnBookmark.svg";
 import "./MovieDetails.scss";
@@ -12,10 +13,13 @@ export default function MovieDetails() {
   const navigate = useNavigate();
   const { updateBooking } = useBooking();
   const { isBookmarked, toggleBookmark } = useBookmarks();
+  const { isAuthenticated } = useAuth();
 
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState(false);
+  const [bookmarkError, setBookmarkError] = useState("");
+  const [bookmarkLoading, setBookmarkLoading] = useState(false);
   const formatRuntime = (minutes) => {
     if (!minutes) return "Unknown";
 
@@ -60,6 +64,24 @@ export default function MovieDetails() {
 
   const bookmarked = isBookmarked(movie.id);
 
+  const handleToggleBookmark = async () => {
+    setBookmarkError("");
+
+    if (!isAuthenticated) {
+      navigate("/profile");
+      return;
+    }
+
+    setBookmarkLoading(true);
+    try {
+      await toggleBookmark(movie);
+    } catch (error) {
+      setBookmarkError(error.message || "Failed to update bookmark");
+    } finally {
+      setBookmarkLoading(false);
+    }
+  };
+
   const handleBookTicket = () => {
     updateBooking({
       movie: {
@@ -87,8 +109,9 @@ export default function MovieDetails() {
         <button
           type="button"
           className={bookmarked ? "bookmark-btn active" : "bookmark-btn"}
-          onClick={() => toggleBookmark(movie)}
+          onClick={handleToggleBookmark}
           aria-label={bookmarked ? "Remove bookmark" : "Add bookmark"}
+          disabled={bookmarkLoading}
         >
           <svg
             width="24"
@@ -108,6 +131,8 @@ export default function MovieDetails() {
           </svg>
         </button>
       </section>
+
+      {bookmarkError ? <p className="bookmark-error">{bookmarkError}</p> : null}
 
       <section className="movie-det_content">
         <div className="movie-det_img">

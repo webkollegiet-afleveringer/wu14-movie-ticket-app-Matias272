@@ -18,6 +18,8 @@ function readStoredUser() {
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => readStoredUser());
 
+  const token = localStorage.getItem(TOKEN_KEY) || "";
+
   const login = async ({ email, password }) => {
     const result = await loginUser({ email, password });
     const nextUser = { email };
@@ -41,12 +43,13 @@ export function AuthProvider({ children }) {
   const value = useMemo(
     () => ({
       user,
+      token,
       isAuthenticated: !!user,
       login,
       register,
       logout,
     }),
-    [user],
+    [user, token],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
