@@ -2,40 +2,142 @@
 
 .ticket-page {
   min-height: 100vh;
+  padding-bottom: 30px;
+
+  &_header {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+    }
+
+    span {
+      width: 24px;
+    }
+  }
+
   &_instructions {
-    padding: 10px 20px;
+    padding: 6px 20px 14px;
+
     h2 {
       margin-bottom: 10px;
     }
+
     p {
+      max-width: 380px;
       color: $text-2;
+      line-height: 1.4;
     }
   }
 }
-.ticket-sec {
-  padding: 15px 20px;
-  &_ul {
-    display: flex;
-    &_card {
-      min-width: 90%;
-      padding: 20px;
-      background-color: white;
-      color: black;
-      display: flex;
-      gap: 12px;
-      padding: 14px;
-      border-radius: 12px;
-      
-      img {
-        width: 90px;
-        border-radius: 8px;
-      }
-      
-      p {
-        color: $text-2;
-        margin-top: 4px;
-      }
 
+.ticket-sec {
+  padding: 0 20px;
+}
+
+.ticket-card {
+  max-width: 420px;
+  margin: 0 auto;
+  border-radius: 16px;
+  background: #f2f2f2;
+  color: #131313;
+  overflow: hidden;
+
+  &_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 26px 28px 18px;
+
+    h3 {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.1;
     }
   }
+
+  &_grid {
+    padding: 0 28px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 24px;
+    row-gap: 16px;
+  }
+
+  &_cutline {
+    position: relative;
+    border-top: 2px dashed #444;
+    margin: 4px 0 0;
+
+    .left-notch,
+    .right-notch {
+      position: absolute;
+      top: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #1b1e25;
+      transform: translateY(-50%);
+    }
+
+    .left-notch {
+      left: -14px;
+    }
+
+    .right-notch {
+      right: -14px;
+    }
+  }
+}
+
+.ticket-p-tit {
+  color: #7b7b7b;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.ticket-p {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.h3-red {
+  color: #f44e63;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.ticket-barcode {
+  padding: 20px 28px 26px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1px;
+  min-height: 92px;
+
+  span {
+    height: 58px;
+    background: #101010;
+    display: inline-block;
+  }
+}
+
+.ticket-download-btn {
+  width: calc(100% - 40px);
+  max-width: 420px;
+  margin: 18px auto 0;
+  display: block;
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: $skyblue;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
 }
