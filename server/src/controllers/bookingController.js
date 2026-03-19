@@ -8,6 +8,46 @@ import {
 import validatePayment from "../utils/validatePayment.js";
 const TICKET_PRICE = 12.99;
 
+async function normalizeLegacyReservedSeats(showtime) {
+  const paidBookings = await Booking.find({
+    showtimeId: showtime._id,
+    status: "paid",
+  })
+    .select("seats")
+    .lean();
+
+  const bookedSeats = new Set(paidBookings.flatMap((booking) => booking.seats));
+  let changed = false;
+
+  showtime.seats = showtime.seats.map((seat) => {
+    const shouldBeReserved = bookedSeats.has(seat.seatNumber);
+
+    if (shouldBeReserved && seat.status !== "reserved") {
+      changed = true;
+      return {
+        ...seat.toObject(),
+        status: "reserved",
+        reservedAt: seat.reservedAt || new Date(),
+      };
+    }
+
+    if (!shouldBeReserved && seat.status === "reserved") {
+      changed = true;
+      return {
+        ...seat.toObject(),
+        status: "available",
+        reservedAt: undefined,
+      };
+    }
+
+    return seat;
+  });
+
+  if (changed) {
+    await showtime.save();
+  }
+}
+
 function generateBookingId() {
   const rand = Math.random().toString(36).slice(2, 6).toUpperCase();
   const t = Date.now().toString(36).slice(-4).toUpperCase();
@@ -70,6 +110,8 @@ export async function getShowtimeSeats(req, res) {
     if (!showtime)
       return res.status(404).json({ message: "Showtime not found" });
 
+    await normalizeLegacyReservedSeats(showtime);
+
     res.json({
       id: showtime._id,
       movieId: showtime.movieId,
@@ -113,6 +155,8 @@ export async function checkoutBooking(req, res) {
     );
     if (!showtime)
       return res.status(404).json({ message: "Showtime not found" });
+
+    await normalizeLegacyReservedSeats(showtime);
 
     const unavailable = seats.filter((seat) => {
       const seatRef = showtime.seats.find((s) => s.seatNumber === seat);

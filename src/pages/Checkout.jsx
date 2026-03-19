@@ -5,7 +5,7 @@ import { checkoutBooking } from "../bookingApi";
 import { useBooking } from "../context/BookingContext";
 import "./Checkout.scss";
 
-const TICKET_PRICE = 12.99;
+const TICKET_PRICE = 49.9;
 
 function formatCard(raw) {
   return raw
@@ -141,7 +141,7 @@ export default function Checkout() {
         {error ? <p className="error-text">{error}</p> : null}
 
         <button className="continue-btn" type="submit" disabled={processing}>
-          {processing ? "Processing..." : `Pay $${total}`}
+          {processing ? "Processing..." : `Pay Now | $${total}`}
         </button>
       </form>
     </div>

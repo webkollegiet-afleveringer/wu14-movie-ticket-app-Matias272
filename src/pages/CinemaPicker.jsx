@@ -4,6 +4,7 @@ import { fetchShowtimeSeats, fetchShowtimes } from "../bookingApi";
 import { useBooking } from "../context/BookingContext";
 import SeatPicker from "../components/SeatPicker";
 import BackIcon from "../assets/icons/btnBack.svg";
+import Screen from "../assets/bioscreen.svg"
 import "./CinemaPicker.scss";
 
 const TICKET_PRICE = 12.99;
@@ -204,7 +205,9 @@ export default function CinemaPicker() {
           </label>
         </div>
       </div>
-
+      <div className="booking-screen">
+        <img src={Screen} alt="" srcset="" />
+      </div>
       <div className="booking-one_seats">
         <SeatPicker
           seats={seats}
@@ -233,7 +236,7 @@ export default function CinemaPicker() {
         >
           {loadingSeats
             ? "Loading seats..."
-            : `Checkout${selectedSeats.length ? ` · $${total}` : ""}`}
+            : "Checkout"}
         </button>
       </div>
     </div>

@@ -1,0 +1,43 @@
+@use "../styles/variables.scss" as *;
+
+.bookmark {
+	min-height: 100vh;
+	padding: 12px 20px 90px;
+
+	&_header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 16px;
+
+		button {
+			background: transparent;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+		}
+
+		h2 {
+			font-size: 24px;
+			font-weight: 600;
+		}
+
+		span {
+			width: 24px;
+		}
+	}
+
+	&_list {
+		list-style: none;
+		display: flex;
+		gap: 14px;
+		flex-wrap: wrap;
+	}
+
+	&_empty {
+		color: $text-2;
+		font-size: 15px;
+		padding: 12px 2px;
+	}
+}
+

@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { fetchMovieDetails } from "../tmdb";
 import { useBooking } from "../context/BookingContext";
+import { useBookmarks } from "../context/BookmarkContext";
 import BackIcon from "../assets/icons/btnBack.svg";
 import Bookmark from "../assets/icons/btnBookmark.svg";
 import "./MovieDetails.scss";
@@ -10,6 +11,7 @@ export default function MovieDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { updateBooking } = useBooking();
+  const { isBookmarked, toggleBookmark } = useBookmarks();
 
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -56,6 +58,8 @@ export default function MovieDetails() {
       ? movie.overview.slice(0, 150) + ""
       : movie.overview;
 
+  const bookmarked = isBookmarked(movie.id);
+
   const handleBookTicket = () => {
     updateBooking({
       movie: {
@@ -80,7 +84,12 @@ export default function MovieDetails() {
 
         <h2>Movie Details</h2>
 
-        <button>
+        <button
+          type="button"
+          className={bookmarked ? "bookmark-btn active" : "bookmark-btn"}
+          onClick={() => toggleBookmark(movie)}
+          aria-label={bookmarked ? "Remove bookmark" : "Add bookmark"}
+        >
           <img src={Bookmark} alt="Bookmark" />
         </button>
       </section>

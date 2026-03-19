@@ -38,7 +38,7 @@ export default function Navbar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/w"}>
+            <NavLink to={"/bookmark"}>
               <svg
                 width="24"
                 height="24"

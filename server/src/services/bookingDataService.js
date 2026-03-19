@@ -5,7 +5,7 @@ const DEFAULT_CINEMAS = [
   { name: "CineMex Downtown", city: "New York", distanceKm: 0.8 },
   { name: "Cinepolis Uptown", city: "New York", distanceKm: 2.3 },
   { name: "Galaxy Cinema", city: "Brooklyn", distanceKm: 5.1 },
-  { name: "Regal Moviehouse", city: "Queens", distanceKm: 7.4 },
+  { name: "Moviehouse", city: "Queens", distanceKm: 7.4 },
   { name: "Cinepolis Grand", city: "Manhattan", distanceKm: 3.2 },
 ];
 
@@ -31,18 +31,15 @@ function seededRandom(seed) {
   };
 }
 
-function buildSeatLayout(showtimeSeed) {
+function buildSeatLayout() {
   const rows = ["A", "B", "C", "D", "E", "F"];
   const cols = Array.from({ length: 10 }, (_, i) => i + 1);
-  const rand = seededRandom(hashString(showtimeSeed));
 
   return rows.flatMap((row) =>
     cols.map((col) => {
-      const seatNumber = `${row}${col}`;
-      const preReserved = rand() < 0.22;
       return {
-        seatNumber,
-        status: preReserved ? "reserved" : "available",
+        seatNumber: `${row}${col}`,
+        status: "available",
       };
     }),
   );
@@ -89,9 +86,7 @@ export async function ensureMovieShowtimes(movieId) {
             cinemaId: cinema._id,
             date,
             time,
-            seats: buildSeatLayout(
-              `${movieId}-${cinema._id.toString()}-${date}-${time}`,
-            ),
+            seats: buildSeatLayout(),
           });
         }
       }
