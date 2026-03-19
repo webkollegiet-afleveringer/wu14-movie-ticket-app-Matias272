@@ -97,7 +97,10 @@
   justify-content: center;
 
   &.active {
-    background: rgba(84, 168, 229, 0.18);
+    svg path {
+      fill: $skyblue;
+      stroke: $skyblue;
+    }
   }
 }
 
