@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import BackIcon from "../assets/icons/btnBack.svg";
+import Sucesss from "../assets/iconSuccess.svg";
 import { checkoutBooking } from "../bookingApi";
 import { useBooking } from "../context/BookingContext";
 import "./Checkout.scss";
@@ -35,6 +36,7 @@ export default function Checkout() {
   });
   const [error, setError] = useState("");
   const [processing, setProcessing] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   if (!booking.showtime?.id || !booking.selectedSeats?.length) {
     navigate(`/booking/${movieId}/cinema`, { replace: true });
@@ -71,7 +73,7 @@ export default function Checkout() {
         bookingId: result.bookingId,
         user: { name: form.name, email: form.email },
       });
-      navigate("/booking/ticket");
+      setShowSuccessModal(true);
     } catch (err) {
       setError(err.message || "Payment failed");
     } finally {
@@ -81,6 +83,23 @@ export default function Checkout() {
 
   return (
     <div className="checkout">
+      {showSuccessModal ? (
+        <div className="checkout-success-overlay" role="dialog" aria-modal="true">
+          <div className="checkout-success-modal">
+            <img src={Sucesss} alt="" />
+            <h3>Your payment was successful</h3>
+            <p>Your booking is confirmed.</p>
+            <button
+              className="continue-btn"
+              type="button"
+              onClick={() => navigate("/booking/ticket")}
+            >
+              See E-ticket
+            </button>
+          </div>
+        </div>
+      ) : null}
+
       <section className="checkout_header">
         <button onClick={() => navigate(-1)} aria-label="Go back">
           <img src={BackIcon} alt="" />

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { fetchTicket } from "../bookingApi";
 import { useBooking } from "../context/BookingContext";
+import BackIcon from "../assets/icons/btnBack.svg";
 import "./Ticket.scss";
 
 export default function Ticket() {
@@ -30,19 +31,35 @@ export default function Ticket() {
 
   return (
     <div className="ticket-page">
-      <h2>Booking Confirmed</h2>
-      <article className="ticket-card">
-        <img src={posterUrl} alt={ticket.movie.title} />
-        <div>
-          <h3>{ticket.movie.title}</h3>
-          <p>{ticket.cinema.name}</p>
-          <p>
-            {ticket.showtime.date} · {ticket.showtime.time}
-          </p>
-          <p>Seats: {ticket.seats.join(", ")}</p>
-          <p>Booking ID: {ticket.bookingId}</p>
-        </div>
-      </article>
+      <section className="checkout_header">
+        <button onClick={() => navigate(-1)} aria-label="Go back">
+          <img src={BackIcon} alt="" />
+        </button>
+        <h2>E-Ticket</h2>
+        <span />
+      </section>
+      <section className="ticket-page_instructions">
+        <h2>Instructions</h2>
+        <p>
+          Come to the cinema, show and scan the barcode to the space provided.
+          Continue to comply with health protocols.
+        </p>
+      </section>
+      <section className="ticket-sec">
+        <ul className="ticket-sec_ul">
+          <article className="ticket-sec_ul_card">
+            <div>
+              <h3>{ticket.movie.title}</h3>
+              <p>{ticket.cinema.name}</p>
+              <p>
+                {ticket.showtime.date} · {ticket.showtime.time}
+              </p>
+              <p>Seats: {ticket.seats.join(", ")}</p>
+              <p>Booking ID: {ticket.bookingId}</p>
+            </div>
+          </article>
+        </ul>
+      </section>
       <button
         className="continue-btn"
         onClick={() => {

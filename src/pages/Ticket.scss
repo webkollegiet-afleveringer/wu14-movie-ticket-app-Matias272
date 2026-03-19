@@ -2,30 +2,40 @@
 
 .ticket-page {
   min-height: 100vh;
-  padding: 24px 16px;
-
-  h2 {
-    text-align: center;
-    margin-bottom: 16px;
+  &_instructions {
+    padding: 10px 20px;
+    h2 {
+      margin-bottom: 10px;
+    }
+    p {
+      color: $text-2;
+    }
   }
 }
+.ticket-sec {
+  padding: 15px 20px;
+  &_ul {
+    display: flex;
+    &_card {
+      min-width: 90%;
+      padding: 20px;
+      background-color: white;
+      color: black;
+      display: flex;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 12px;
+      
+      img {
+        width: 90px;
+        border-radius: 8px;
+      }
+      
+      p {
+        color: $text-2;
+        margin-top: 4px;
+      }
 
-.ticket-card {
-  display: flex;
-  gap: 12px;
-  padding: 14px;
-  border-radius: 12px;
-  background: #252932;
-  max-width: 520px;
-  margin: 0 auto;
-
-  img {
-    width: 90px;
-    border-radius: 8px;
-  }
-
-  p {
-    color: $text-2;
-    margin-top: 4px;
+    }
   }
 }
