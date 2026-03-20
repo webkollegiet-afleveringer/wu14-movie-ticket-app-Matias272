@@ -1,0 +1,23 @@
+@import '@fontsource/poppins';
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #1B1E25;
+  color: #ffffff;
+}
+// -
+.page-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+a {
+  color: #fff;
+  text-decoration: none;
+}
+button {
+  border: none;
+}

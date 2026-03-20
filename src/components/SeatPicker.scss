@@ -1,0 +1,58 @@
+@use "../styles/variables.scss" as *;
+
+.seat-picker {
+  padding: 0;
+
+  &_grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+.seat-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.row-group {
+  display: flex;
+  gap: 8px;
+}
+
+.aisle {
+  width: 10px;
+  flex-shrink: 0;
+}
+
+.seat {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid #4f5666;
+  cursor: pointer;
+  transition: transform 0.1s;
+
+  &.available {
+    background-color: transparent;
+    &:hover {
+      border-color: $skyblue;
+      transform: scale(1.03);
+    }
+  }
+
+  &.selected {
+    background-color: $skyblue;
+    border-color: $skyblue;
+  }
+
+  &.reserved {
+    background-color: #f45a5a;
+    border-color: #f45a5a;
+    cursor: not-allowed;
+    opacity: 0.95;
+  }
+}
