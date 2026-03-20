@@ -1,6 +1,5 @@
-const API_ROOT = (
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api"
-).replace(/\/$/, "");
+import { API_ROOT } from "./apiRoot";
+
 const API_BASE = `${API_ROOT}/booking`;
 
 async function request(path, options = {}) {
