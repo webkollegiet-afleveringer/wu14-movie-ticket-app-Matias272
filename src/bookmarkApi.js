@@ -1,4 +1,7 @@
-const BOOKMARK_BASE = "http://localhost:5000/api/bookmarks";
+const API_ROOT = (
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api"
+).replace(/\/$/, "");
+const BOOKMARK_BASE = `${API_ROOT}/bookmarks`;
 
 async function request(path, token, options = {}) {
   const res = await fetch(`${BOOKMARK_BASE}${path}`, {
