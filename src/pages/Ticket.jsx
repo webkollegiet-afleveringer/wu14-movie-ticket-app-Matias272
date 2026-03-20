@@ -1,29 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { fetchTicket } from "../bookingApi";
 import { useBooking } from "../context/BookingContext";
 import BackIcon from "../assets/icons/btnBack.svg";
+import Barcode from "react-barcode";
+import html2canvas from "html2canvas";
 import "./Ticket.scss";
 
-function buildBarcodeBars(input) {
-  const base = String(input || "").trim().toUpperCase() || "EMPTY";
-  const bits = base
-    .split("")
-    .map((char) => char.charCodeAt(0).toString(2).padStart(8, "0"))
-    .join("");
 
-  const payload = `1010${bits}1011`;
-  return payload.split("").map((bit, index) => ({
-    key: `${bit}-${index}`,
-    width: bit === "1" ? 3 : 1,
-  }));
-}
 
 export default function Ticket() {
   const navigate = useNavigate();
   const { booking } = useBooking();
   const [ticket, setTicket] = useState(null);
   const [error, setError] = useState("");
+  const [downloading, setDownloading] = useState(false);
+  const ticketCardRef = useRef(null);
 
   useEffect(() => {
     if (!booking.bookingId) {
@@ -39,7 +31,29 @@ export default function Ticket() {
   if (error) return <p>{error}</p>;
   if (!ticket) return <p>Loading...</p>;
 
-  const barcodeBars = buildBarcodeBars(ticket.bookingId);
+  const handleDownloadTicket = async () => {
+    if (!ticketCardRef.current || downloading) return;
+
+    setDownloading(true);
+    try {
+      const canvas = await html2canvas(ticketCardRef.current, {
+        backgroundColor: "#f2f2f2",
+        scale: 2,
+        useCORS: true,
+      });
+
+      const image = canvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.href = image;
+      link.download = `ticket-${ticket.bookingId}.png`;
+      link.click();
+    } catch {
+      setError("Failed to download ticket");
+    } finally {
+      setDownloading(false);
+    }
+  };
+
 
   return (
     <div className="ticket-page">
@@ -60,7 +74,7 @@ export default function Ticket() {
       </section>
 
       <section className="ticket-sec">
-        <article className="ticket-card">
+        <article className="ticket-card" ref={ticketCardRef}>
           <div className="ticket-card_top">
             <h3>Film: {ticket.movie.title}</h3>
             <p className="h3-red">e-ticket</p>
@@ -98,19 +112,18 @@ export default function Ticket() {
             <span className="right-notch" />
           </div>
 
-          <div className="ticket-barcode" aria-label={`Barcode ${ticket.bookingId}`}>
-            {barcodeBars.map((bar) => (
-              <span key={bar.key} style={{ width: `${bar.width}px` }} />
-            ))}
+          <div className="ticket-barcode">
+            <Barcode fontSize={0} background="#f2f2f2" value={ticket.bookingId} />
           </div>
         </article>
       </section>
 
       <button
         className="ticket-download-btn"
-        onClick={() => window.print()}
+        onClick={handleDownloadTicket}
+        disabled={downloading}
       >
-        Download E-Ticket
+        {downloading ? "Preparing Download..." : "Download E-Ticket"}
       </button>
     </div>
   );
