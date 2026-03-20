@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { fetchTicket } from "../bookingApi";
 import { useBooking } from "../context/BookingContext";
 import BackIcon from "../assets/icons/btnBack.svg";
+import Sucesss from "../assets/iconSuccess.svg";
 import Barcode from "react-barcode";
 import html2canvas from "html2canvas";
 import "./Ticket.scss";
@@ -11,10 +12,11 @@ import "./Ticket.scss";
 
 export default function Ticket() {
   const navigate = useNavigate();
-  const { booking } = useBooking();
+  const { booking, clearBooking } = useBooking();
   const [ticket, setTicket] = useState(null);
   const [error, setError] = useState("");
   const [downloading, setDownloading] = useState(false);
+  const [showDownloadModal, setShowDownloadModal] = useState(false);
   const ticketCardRef = useRef(null);
 
   useEffect(() => {
@@ -47,6 +49,7 @@ export default function Ticket() {
       link.href = image;
       link.download = `ticket-${ticket.bookingId}.png`;
       link.click();
+      setShowDownloadModal(true);
     } catch {
       setError("Failed to download ticket");
     } finally {
@@ -57,6 +60,26 @@ export default function Ticket() {
 
   return (
     <div className="ticket-page">
+      {showDownloadModal ? (
+        <div className="checkout-success-overlay" role="dialog" aria-modal="true">
+          <div className="checkout-success-modal">
+            <img src={Sucesss} alt="" />
+            <h3>Your e-ticket was downloaded</h3>
+            <p>You can now find it in your downloads.</p>
+            <button
+              className="continue-btn"
+              type="button"
+              onClick={() => {
+                clearBooking();
+                navigate("/");
+              }}
+            >
+              Back Home
+            </button>
+          </div>
+        </div>
+      ) : null}
+
       <section className="ticket-page_header">
         <button onClick={() => navigate(-1)} aria-label="Go back">
           <img src={BackIcon} alt="" />
